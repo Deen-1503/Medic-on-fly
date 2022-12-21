@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Medic On Fly</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="city">
+        <item>Kuala Lumpur</item>
+        <item>Klang</item>
+        <item>Ipoh</item>
+        <item>Butterworth</item>
+        <item>Johor Bahru</item>
+        <item>George Town</item>
+        <item>Petaling Jaya</item>
+        <item>Kuantan</item>
+        <item>Port Dickson</item>
+
+    </string-array>
+</resources>

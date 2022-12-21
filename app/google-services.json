@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "279932169363",
+    "firebase_url": "https://myhealth-ed433-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "myhealth-ed433",
+    "storage_bucket": "myhealth-ed433.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:279932169363:android:d535d9cdd3eadc32bf3166",
+        "android_client_info": {
+          "package_name": "com.project.myhealth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "279932169363-rr90k6rffjo030o08dmnrmus779cefmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0Dh4DpuIZaxr0vF5KzANlkXkPKKb8yW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "279932169363-rr90k6rffjo030o08dmnrmus779cefmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@android:style/Widget.DeviceDefault.Light.ScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F8F7F7"
+    android:contentDescription="@string/app_name"
+    android:orientation="vertical"
+    android:overScrollMode="never"
+    android:scrollbarSize="0dp"
+    tools:context=".main.BookAppointment"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E8FFFE"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/top_nav"
+            layout="@layout/top_nav"
+            android:layout_width="match_parent"
+            android:layout_height="72dp" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:padding="6dp"
+            android:text="Book Your Appointment Now"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/book_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="3dp"
+                android:drawableLeft="@drawable/envelope_solid"
+                android:drawablePadding="12dp"
+                android:drawableTint="#03A9F4"
+                android:gravity="center|clip_vertical|start"
+                android:padding="6dp" />
+
+            <TextView
+                android:id="@+id/book_fullname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="3dp"
+                android:drawableLeft="@drawable/name"
+                android:drawablePadding="12dp"
+                android:drawableTint="#03A9F4"
+                android:gravity="center|clip_vertical|start"
+                android:padding="6dp"
+                android:text="Full name" />
+
+            <TextView
+                android:id="@+id/book_phoneno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="12dp"
+                android:layout_marginRight="12dp"
+                android:layout_marginBottom="3dp"
+                android:drawableLeft="@drawable/viber"
+                android:drawablePadding="12dp"
+                android:drawableTint="#03A9F4"
+                android:gravity="center|clip_vertical|start"
+                android:padding="6dp"
+                android:text="Phone number" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="12dp"
+            android:background="@color/white"
+            android:elevation="4dp"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <EditText
+                android:id="@+id/book_context"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="3dp"
+                android:background="@color/white"
+                android:drawableLeft="@drawable/signature"
+                android:drawablePadding="14dp"
+                android:drawableTint="#3F51B5"
+                android:gravity="center_vertical"
+                android:hint="Context"
+                android:minHeight="48dp"
+                android:padding="6dp"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/book_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="3dp"
+                android:drawableLeft="@drawable/calendar_days_solid"
+                android:drawablePadding="14dp"
+                android:drawableTint="#3F51B5"
+                android:padding="6dp"
+                android:text="Date"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="3dp"
+                android:drawableLeft="@drawable/clock_regular"
+                android:drawablePadding="12dp"
+                android:drawableTint="#3F51B5"
+                android:padding="6dp"
+                android:text="Time"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:id="@+id/book_time_9am"
+                        android:layout_width="90dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#64B5F6"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="09:00 a.m"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/book_time_10am"
+                        android:layout_width="90dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#4DB6AC"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="10:00 a.m"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/book_time_11am"
+                        android:layout_width="90dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#FFB74D"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="11:00 a.m"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/book_time_3pm"
+                        android:layout_width="90dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#9575CD"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="03:00 p.m"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="3dp"
+                android:drawableLeft="@drawable/house_medical_solid"
+                android:drawablePadding="12dp"
+                android:drawableTint="#3F51B5"
+                android:padding="6dp"
+                android:text="Hospital"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="0dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:id="@+id/book_hospital_HPD"
+                        android:layout_width="139dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#64B5F6"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Hospital Port Dickson"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/book_hospital_HKL"
+                        android:layout_width="139dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#4DB6AC"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Hospital Kuala Lumpur (HKL)"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="139dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#FFB74D"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Hospital Port Dickson"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="139dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#9575CD"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Hospital Port Dickson"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="3dp"
+                android:drawableLeft="@drawable/stethoscope"
+                android:drawablePadding="12dp"
+                android:drawableTint="#3F51B5"
+                android:padding="6dp"
+                android:text="Category"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginRight="6dp"
+                android:layout_marginBottom="6dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:id="@+id/book_cat_checkup"
+                        android:layout_width="139dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_marginRight="6dp"
+                        android:layout_marginBottom="6dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#64B5F6"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Check Up"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/book_cat_dentist"
+                        android:layout_width="139dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#4DB6AC"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Dentist"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/book_cat_kidney"
+                        android:layout_width="139dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#FFB74D"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Kidney"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/book_cat_blood"
+                        android:layout_width="139dp"
+                        android:layout_height="90dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/textfield_bg"
+                        android:backgroundTint="#9575CD"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:padding="6dp"
+                        android:text="Blood"
+                        android:textSize="16sp" />
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <Button
+                android:id="@+id/book_accept_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#2196F3"
+                android:text="Accept" />
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
