@@ -1,5 +1,5 @@
 package com.project.myhealth.utils;
 
 public enum AppointmentStatus {
-    ACCEPTED, PENDING, REJECTED;
+        ACCEPTED, PENDING, REJECTED;
 }

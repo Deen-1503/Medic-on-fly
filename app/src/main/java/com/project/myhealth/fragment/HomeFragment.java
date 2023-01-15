@@ -3,9 +3,9 @@ package com.project.myhealth.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,29 +14,24 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.project.myhealth.R;
-import com.project.myhealth.main.PrecripstionLoad;
-import com.project.myhealth.utils.CustomDialog;
-import com.project.myhealth.utils.DataSet;
-import com.project.myhealth.utils.RVAdapter;
+import com.project.myhealth.database.DataSet;
+import com.project.myhealth.database.FirebaseHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class HomeFragment extends Fragment {
     private TextView date,date1,appointmentName,noMed;
-    RecyclerView recyclerView, recycleView2;
-    LinearLayout prescription;
-    View view;
-    RVAdapter adapter, adapter2;
-    ArrayList<DataSet> precripstions, appointments;
+    private RecyclerView recyclerView, recycleView2;
 
     FirebaseAuth fAuth;
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         //date Setter
         date = (TextView) view.findViewById(R.id.home_date);
@@ -49,38 +44,18 @@ public class HomeFragment extends Fragment {
         fAuth = FirebaseAuth.getInstance();
         setAppointmentName();
 
-        precripstions = new ArrayList<>();
-        adapter = new RVAdapter(getActivity(), precripstions, R.layout.layout_item_precripstion);
 
         recyclerView = view.findViewById(R.id.pres_view);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(adapter);
-
         noMed = view.findViewById(R.id.home_no_med);
-        prescription = view.findViewById(R.id.home_precripstion);
-        PrecripstionLoad load = new PrecripstionLoad(adapter,precripstions,"Precripstion");
-        load.loadData();
+        LinearLayout prescription = view.findViewById(R.id.home_precripstion);
 
-        if(precripstions != null){ //not empty
-            noMed.setVisibility(View.INVISIBLE);
-            recyclerView.setVisibility(View.VISIBLE);
-            prescription.setOnClickListener(v -> {
-                CustomDialog dialog = new CustomDialog(getActivity(), R.layout.layout_precripstion_dialog, adapter, precripstions,getActivity());
-                dialog.show();
-                precripstions.clear();
-            });
-        }
-        appointments = new ArrayList<>();
-        adapter2 = new RVAdapter(getActivity(),appointments, R.layout.layout_item_appointment_small);
-
-        PrecripstionLoad load2 = new PrecripstionLoad(adapter2, appointments,"Appointment");
-        load2.loadData();
+        recyclerView.setVisibility(View.VISIBLE);
+        FirebaseHelper fHelper = FirebaseHelper.getInstance();
+        fHelper.loadData("Precripstion", getContext(),recyclerView,R.layout.layout_item_precripstion);
 
         recycleView2 = view.findViewById(R.id.recycle_view2);
-        recycleView2.setHasFixedSize(true);
-        recycleView2.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recycleView2.setAdapter(adapter2);
+        fHelper.loadData("Appointment", getContext(),recycleView2,R.layout.layout_item_appointment_small);
+        Log.e("Home", "onCreateView: " + fHelper.getProfile().getFullName());
         return view;
     }
 
@@ -124,14 +99,3 @@ public class HomeFragment extends Fragment {
 
 }
 
-
-
-//    private void setMed(QuerySnapshot snapshots){
-//        if (snapshots.getDocuments().isEmpty()) {
-//            noMed.setVisibility(View.VISIBLE);
-//            recyclerView.setVisibility(View.INVISIBLE);
-//        } else {
-//            noMed.setVisibility(View.INVISIBLE);
-//            recyclerView.setVisibility(View.VISIBLE);
-//        }
-//    }

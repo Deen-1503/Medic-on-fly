@@ -13,20 +13,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.project.myhealth.R;
-import com.project.myhealth.main.PrecripstionLoad;
+import com.project.myhealth.database.DataSet;
 import com.project.myhealth.user.Login;
 
 import java.util.ArrayList;
 
 public class CustomDialog extends Dialog implements android.view.View.OnClickListener{
 
-    private Activity context;
-    public Dialog dialog;
-    private Button yes, no, close;
-    private int resourceLayout;
+    private final Activity context;
+    private final int resourceLayout;
     RecyclerView recyclerView;
     RVAdapter adapter;
-    ArrayList<DataSet> precripstions;
+    ArrayList<DataSet> prescription;
     Activity activity;
 
     public CustomDialog(Activity context, int resourceLayout) {
@@ -36,12 +34,12 @@ public class CustomDialog extends Dialog implements android.view.View.OnClickLis
     }
 
 
-    public CustomDialog(Activity context, int resourceLayout, RVAdapter adapter, ArrayList<DataSet> precripstions, Activity activity) {
+    public CustomDialog(Activity context, int resourceLayout, RVAdapter adapter, ArrayList<DataSet> prescription, Activity activity) {
         super(context);
         this.context = context;
         this.resourceLayout = resourceLayout;
         this.adapter = adapter;
-        this.precripstions = precripstions;
+        this.prescription = prescription;
         this.activity = activity;
 
     }
@@ -54,8 +52,8 @@ public class CustomDialog extends Dialog implements android.view.View.OnClickLis
         setContentView(resourceLayout);
 
         if(resourceLayout == R.layout.layout_custom_dialog){
-            yes = (Button) findViewById(R.id.dia_btn_yes);
-            no = (Button) findViewById(R.id.dia_btn_no);
+            Button yes = (Button) findViewById(R.id.dia_btn_yes);
+            Button no = (Button) findViewById(R.id.dia_btn_no);
 
             yes.setOnClickListener(this);
             no.setOnClickListener(this);
@@ -65,11 +63,8 @@ public class CustomDialog extends Dialog implements android.view.View.OnClickLis
             recyclerView.setHasFixedSize(true);
             recyclerView.setLayoutManager(new LinearLayoutManager(activity));
             recyclerView.setAdapter(adapter);
-            precripstions.clear();
-//            recyclerView = (RecyclerView) findViewById(R.id.home_pres_view);
-            PrecripstionLoad load = new PrecripstionLoad(adapter, precripstions, "Precripstion");
-            load.loadData();
-            close = (Button) findViewById(R.id.close);
+            prescription.clear();
+            Button close = (Button) findViewById(R.id.close);
             close.setOnClickListener(this);
         }
 

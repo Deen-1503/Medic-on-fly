@@ -15,10 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.project.myhealth.MainActivity;
 import com.project.myhealth.R;
+import com.project.myhealth.database.FirebaseHelper;
 
 public class Login extends AppCompatActivity {
 
@@ -34,6 +33,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        FirebaseHelper firebaseHelper = FirebaseHelper.getInstance();
+
         dialog = new ProgressDialog(this);
         dialog.setTitle("Retrieving Data");
         dialog.setMessage("Loading...");
@@ -44,49 +45,45 @@ public class Login extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.signin_btn);
         fAuth = FirebaseAuth.getInstance();
 
-        if(fAuth.getCurrentUser() != null){
-            Intent intent = new Intent(Login.this,MainActivity.class);
-            startActivity(intent);
+        if(firebaseHelper.isLogIn()){
+            Intent toMainActivity = new Intent(Login.this,MainActivity.class);
+            startActivity(toMainActivity);
             finish();
         }
 
-        mLoginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String email = mEmail.getText().toString();
-                String password = mPassword.getText().toString();
+        mLoginBtn.setOnClickListener(view -> {
+            String email = mEmail.getText().toString();
+            String password = mPassword.getText().toString();
 
-                if (TextUtils.isEmpty(email)){
-                    mEmail.setError("Required");
-                    return;
-                }
-
-                if (TextUtils.isEmpty(password)){
-                    mPassword.setError("Required");
-                    return;
-                }
-                if (password.length() < 6){
-                    mPassword.setError("Password must more than 6 character");
-                    return;
-                }
-//                progressBar.setVisibility(View.VISIBLE);
-                dialog.show();
-                InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                im.hideSoftInputFromWindow(view.getWindowToken(),0);
-
-                fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
-                    if(task.isSuccessful()){
-                        Toast.makeText(Login.this, "Sign Up Success", Toast.LENGTH_SHORT).show();
-                        Intent loginIntent = new Intent(Login.this, MainActivity.class);
-                        startActivity(loginIntent);
-                        finish();
-                    } else {
-                        Toast.makeText(Login.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        progressBar.setVisibility(View.INVISIBLE);
-
-                    }dialog.dismiss();
-                });
+            if (TextUtils.isEmpty(email)){
+                mEmail.setError("Required");
+                return;
             }
+
+            if (TextUtils.isEmpty(password)){
+                mPassword.setError("Required");
+                return;
+            }
+            if (password.length() < 6){
+                mPassword.setError("Password must more than 6 character");
+                return;
+            }
+            dialog.show();
+            InputMethodManager im = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            im.hideSoftInputFromWindow(view.getWindowToken(),0);
+
+            fAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(task -> {
+                if(task.isSuccessful()){
+                    Toast.makeText(Login.this, "Sign Up Success", Toast.LENGTH_SHORT).show();
+                    Intent loginIntent = new Intent(Login.this, MainActivity.class);
+                    startActivity(loginIntent);
+                    finish();
+                } else {
+                    Toast.makeText(Login.this, "Error! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+
+                }dialog.dismiss();
+            });
         });
     }
 

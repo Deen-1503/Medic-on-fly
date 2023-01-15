@@ -1,10 +1,10 @@
-package com.project.myhealth.utils;
+package com.project.myhealth.database;
 
 import com.google.firebase.Timestamp;
 
 public class DataSet {
 //    Appointment
-    String title, category, doctor, location;
+    String title, category, doctor, location, status;
     Timestamp time;
     String medicine,amount,take;
 
@@ -17,12 +17,13 @@ public class DataSet {
         this.take = take;
     }
 
-    public DataSet(String title, String category, String doctor, String location, Timestamp time) {
+    public DataSet(String title, String category, String doctor, String location, Timestamp time, String status) {
         this.title = title;
         this.category = category;
         this.doctor = doctor;
         this.location = location;
         this.time = time;
+        this.status = status;
     }
 
     public String getTitle() {
@@ -87,5 +88,13 @@ public class DataSet {
 
     public void setTake(String take) {
         this.take = take;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

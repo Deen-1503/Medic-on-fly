@@ -1,26 +1,16 @@
 package com.project.myhealth.main;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.project.myhealth.R;
 import com.project.myhealth.superclasses.BaseActivity;
-import com.project.myhealth.utils.DataSet;
 
 public class BookAppointment extends BaseActivity implements View.OnClickListener{
     private FirebaseAuth fAuth;
@@ -80,22 +70,6 @@ public class BookAppointment extends BaseActivity implements View.OnClickListene
         blood = findViewById(R.id.book_cat_blood);
 
         docRef = fStore.collection("Users").document(fUserEmail);
-        loadData();
-    }
-
-    private void loadData(){
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error != null){
-                    Log.e("BookAppointment","Profile Load fail: " + error.getMessage());
-                    return;
-                }
-                email.setText(fUserEmail);
-                phone_no.setText(value.getString("phoneNumber"));
-                fName.setText(value.getString("fullName"));
-            }
-        });
     }
 
     private void uploadData(){

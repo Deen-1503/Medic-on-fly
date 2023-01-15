@@ -49,9 +49,8 @@ public class Register extends AppCompatActivity {
     private String fUserEmail;
     private FirebaseUser user;
 
-    ProgressDialog pDialog;
-
-    Bundle extras;
+    private ProgressDialog pDialog;
+    private Bundle extras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +99,6 @@ public class Register extends AppCompatActivity {
 
 
             dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-//            dialog.getDatePicker().setMaxDate();
             dialog.show();
         });
         mOnDateListener = (datePicker, year, month, day) -> {
@@ -140,7 +138,7 @@ public class Register extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Log.d("Firebase + Register", "OnFailure : Email Not Sent " + e.getMessage());
+                                Log.d("FirebaseHelper Register", "OnFailure : Email Not Sent " + e.getMessage());
                             }
                         });
 

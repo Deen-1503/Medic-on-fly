@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.Timestamp;
 import com.project.myhealth.R;
+import com.project.myhealth.database.DataSet;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Locale;
@@ -37,8 +39,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         RVViewHolder viewHolder = (RVViewHolder) holder;
-        DataSet data;
-        data = list.get(position);
+        DataSet data = list.get(position);
 
         if(layout == R.layout.layout_item_precripstion){
             String amount = "Take " + data.getAmount() + " pill . " + data.getTake() + "/day";
@@ -46,6 +47,7 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             viewHolder.pAmount.setText(amount);
 
         }
+
         else if(layout == R.layout.layout_item_appointment) {
             //Appointment
             timestamp = data.getTime();
@@ -58,11 +60,14 @@ public class RVAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             viewHolder.category.setText(data.getCategory());
             viewHolder.doctor.setText(data.getDoctor());
             viewHolder.location.setText(data.getLocation());
-        }else if(layout == R.layout.layout_item_appointment_small){
+        }
+
+        else if(layout == R.layout.layout_item_appointment_small){
             timestamp = data.getTime();
             SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yy", Locale.getDefault());
             SimpleDateFormat time = new SimpleDateFormat("HH mm",Locale.getDefault());
             String ttime = dateFormat.format(timestamp.toDate()) + " at " + time.format(timestamp.toDate());
+
             viewHolder.pTitle.setText(data.getTitle());
             viewHolder.pTime.setText(ttime);
         }

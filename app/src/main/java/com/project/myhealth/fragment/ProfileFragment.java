@@ -9,20 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.project.myhealth.R;
+import com.project.myhealth.database.FirebaseHelper;
 
 public class ProfileFragment extends Fragment {
     TextView userID, email, name, lastName, noPhone, dob, age, address, city;
 
-    FirebaseUser fUser;
-    FirebaseAuth fAuth;
-    FirebaseFirestore fStore;
     View view;
-    private String fUserEmail;
 
 
     @Override
@@ -30,33 +23,30 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        fStore = FirebaseFirestore.getInstance();
-        fAuth = FirebaseAuth.getInstance();
-        fUser = fAuth.getCurrentUser();
+        FirebaseHelper firebaseHelper = FirebaseHelper.getInstance();
+        userID = view.findViewById(R.id.profile_id);
+        email = view.findViewById(R.id.profile_email);
+        name = view.findViewById(R.id.profile_name);
+        noPhone = view.findViewById(R.id.profile_phoneno);
+        address = view.findViewById(R.id.profile_address);
+        city = view.findViewById(R.id.profile_city);
+        dob = view.findViewById(R.id.profile_dob);
 
-        if (fAuth.getCurrentUser() != null) {
-            fUserEmail = fUser.getEmail().toString();
+//        userID.setText(firebaseHelper.getUserInfo("USER_ID"));
+//        email.setText(firebaseHelper.getUserInfo("EMAIL"));
+//        name.setText(firebaseHelper.getUserInfo("FULL_NAME"));
+//        noPhone.setText(firebaseHelper.getUserInfo("PHONE_NUMBER"));
+//        dob.setText(firebaseHelper.getUserInfo("DOB"));
+//        address.setText(firebaseHelper.getUserInfo("ADDRESS"));
+//        city.setText(firebaseHelper.getUserInfo("CITY"));
 
-            userID = view.findViewById(R.id.profile_id);
-            email = view.findViewById(R.id.profile_email);
-            name = view.findViewById(R.id.profile_name);
-            noPhone = view.findViewById(R.id.profile_phoneno);
-            address = view.findViewById(R.id.profile_address);
-            city = view.findViewById(R.id.profile_city);
-            dob = view.findViewById(R.id.profile_dob);
-
-            DocumentReference docRef = fStore.collection("Users").document(fUserEmail);
-            docRef.addSnapshotListener((value, error) -> {
-                userID.setText(fUser.getUid().toString());
-                email.setText(fAuth.getCurrentUser().getEmail());
-                name.setText(value.getString("fullName"));
-                noPhone.setText(value.getString("phoneNumber"));
-                dob.setText(value.getString("dateOfBirth"));
-                address.setText(value.getString("address"));
-                city.setText(value.getString("city"));
-            });
-        }
-
+        userID.setText(firebaseHelper.getProfile().getUserID());
+        email.setText(firebaseHelper.getProfile().getEmail());
+        name.setText(firebaseHelper.getProfile().getFullName());
+        noPhone.setText(firebaseHelper.getProfile().getPhoneNumber());
+        dob.setText(firebaseHelper.getProfile().getDateOfBirth());
+        address.setText(firebaseHelper.getProfile().getAddress());
+        city.setText(firebaseHelper.getProfile().getCity());
 
         return view;
     }

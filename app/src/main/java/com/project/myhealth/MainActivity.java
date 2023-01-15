@@ -11,6 +11,7 @@ import com.project.myhealth.superclasses.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 
+    @Override
     public int getLayoutResource() {
         return R.layout.activity_main;
     }
@@ -28,7 +29,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
     }
 
     public void appointment(View view) {
